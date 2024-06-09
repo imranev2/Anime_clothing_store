@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/ninja-naruto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://db.onlinewebfonts.com/c/82848488b73a87d72f2436c02b9ab608?family=ONE+PIECE" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: white;
+            width: 93.5%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s, padding 0.3s;
+        }
+
+        header.scrolled {
+            background: #f9f9f9;
+            padding: 10px 50px;
+        }
+
+        nav > #logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    grid-gap: 8px;
+    line-height: 100%;
+}
+
+nav > #logo > span {
+    font-size: 32px;
+}
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #E67E22;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 100px;
+            padding: 100px 20px 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .filters .filter-btn,
+        .filters .sort-dropdown {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .filters .filter-btn:hover,
+        .filters .sort-dropdown:hover {
+            background: #f0f0f0;
+            transform: translateY(-3px);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-card h3 {
+            font-size: 1.2em;
+            margin: 15px 0;
+            padding: 0 10px;
+        }
+
+        .product-card p {
+            font-size: 1em;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .price {
+            color: #E67E22;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .rating {
+            margin: 10px 0;
+        }
+
+        .rating span {
+            font-size: 1.2em;
+            color: #FFD700;
+        }
+
+        .rating .half {
+            position: relative;
+        }
+
+        .rating .half::before {
+            content: '\2605';
+            position: absolute;
+            left: 0;
+            width: 50%;
+            overflow: hidden;
+            color: #FFD700;
+        }
+
+        .hero {
+            background: linear-gradient(to bottom right, #14b8fe, #a2d9fd00);
+            
+            color: #fff;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'ONE PIECE', sans-serif;
+            font-size: 3em;
+            margin: 0;
+            color:#0089ec;
+        }
+
+        .hero img {
+            width: 300px;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #E67E22;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        #utility span {
+            cursor: pointer;
+            margin-left: 10px;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        #utility span:hover {
+            color: #E67E22;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="scr/logo.png" alt="Anime Shop" width="40" height="32">
+            <span>Anime Shop</span>
+        </div>
+        <nav>
+            <a href="#">Products</a>
+            <a href="#">About Us</a>
+            <div id="utility">
+                <span class="material-symbols-outlined">
+                    search
+                </span>
+                <span class="material-symbols-outlined">
+                    shopping_cart
+                </span>
+            </div>
+        </nav>
+    </header>
+    <section class="hero">
+        <h1>One piece products!!!</h1>
+        
+    </section>
+    <div class="container">
+        <div class="filters">
+            <div class="filter-btn"><i class="fas fa-filter"></i> Filter</div>
+            <div class="sort-dropdown"><i class="fas fa-sort"></i> Sort by</div>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://d3u67r7pp2lrq5.cloudfront.net/product_photos/2745960/YC0356X_original.jpg" alt="Product 1">
+                <h3>One Piece Merchandise</h3>
+                <p class="price">$19.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://m.media-amazon.com/images/I/81k3eT1m4DL._AC_UF894,1000_QL80_.jpg" alt="Product 2">
+                <h3>Wanted Poster</h3>
+                <p class="price">$24.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images-eu.ssl-images-amazon.com/images/I/61VanlpqR6L._AC_SR462,693_.jpg" alt="Product 3">
+                <h3>wanted hoodie</h3>
+                <p class="price">$14.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://m.media-amazon.com/images/I/61rutr569xL._AC_SL1200_.jpg" alt="Product 4">
+                <h3>One Piece Hoodies</h3>
+                <p class="price">$29.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.ebayimg.com/images/g/0wYAAOSwTZtiDQm8/s-l400.jpg" alt="Product 5">
+                <h3>Roronoa Zoro's swords</h3>
+                <p class="price">$34.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://www.hsbladesent.com/cdn/shop/files/YoruSwordofDraculeMihawkSwordofMihawkDraculeSwordOnePieceSword_1.png?v=1684016309" alt="Product 6">
+                <h3>Yoru Sword of Dracule Mihawk </h3>
+                <p class="price">$39.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://www.vans.com/content/publish/caas/v1/media/265872/data/95f35a4ad8f684c30d1c0a9487f7e1f5/onepiece-hero-image.jpg" alt="Product 7">
+                <h3>One piece shoes</h3>
+                <p class="price">$44.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://benyahyastore.ma/wp-content/uploads/2021/06/1-2021-06-05T164434.211-Copie.jpg" alt="Product 8">
+                <h3>One piece T-Shirt</h3>
+                <p class="price">$49.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmY-TpKnMW7fPPdwDy5dcmF2z9VZbQsM3T7w&s" alt="Product 9">
+                <h3>short Merch</h3>
+                <p class="price">$54.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://m.media-amazon.com/images/I/61t9FPsDkOL._AC_UF894,1000_QL80_.jpg" alt="Product 10">
+                <h3>trio figure</h3>
+                <p class="price">$59.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://onepiece-merchandise.com/wp-content/uploads/2022/08/Anime-ONE-PIECE-Toy-Beasts-Pirates-GK-Battle-Kaido-Action-Figure-PVC-Excellent-Model-Kaizokudan-Figurine.jpg" alt="Product 11">
+                <h3>Kaido figure</h3>
+                <p class="price">$64.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://sw6.elbenwald.de/media/be/7c/dd/1694040736/E1078391_7.jpg" alt="Product 12">
+                <h3> Monkey D. Luffy Backpack</h3>
+                <p class="price">$69.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Anime Shop. All rights reserved.</p>
+        <p>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </p>
+    </footer>
+</body>
+
+</html>

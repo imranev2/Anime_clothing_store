@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/ninja-naruto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.cdnfonts.com/css/cloister-black" rel="stylesheet">
+                
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: white;
+            width: 93.5%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s, padding 0.3s;
+        }
+
+        header.scrolled {
+            background: #f9f9f9;
+            padding: 10px 50px;
+        }
+
+        nav > #logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    grid-gap: 8px;
+    line-height: 100%;
+}
+
+nav > #logo > span {
+    font-size: 32px;
+}
+
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #E67E22;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 100px;
+            padding: 100px 20px 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .filters .filter-btn,
+        .filters .sort-dropdown {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .filters .filter-btn:hover,
+        .filters .sort-dropdown:hover {
+            background: #f0f0f0;
+            transform: translateY(-3px);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-card h3 {
+            font-size: 1.2em;
+            margin: 15px 0;
+            padding: 0 10px;
+        }
+
+        .product-card p {
+            font-size: 1em;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .price {
+            color: #E67E22;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .rating {
+            margin: 10px 0;
+        }
+
+        .rating span {
+            font-size: 1.2em;
+            color: #FFD700;
+        }
+
+        .rating .half {
+            position: relative;
+        }
+
+        .rating .half::before {
+            content: '\2605';
+            position: absolute;
+            left: 0;
+            width: 50%;
+            overflow: hidden;
+            color: #FFD700;
+        }
+
+        .hero {
+            background: linear-gradient(to bottom right, #058405, #60d6851b);
+            font-family: 'Cloister Black', sans-serif;
+            color: #fff;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: "Shippori Mincho", serif;
+            
+            font-size: 3em;
+            margin: 0;
+            color:#475b47;
+        }
+
+        .hero img {
+            width: 300px;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #E67E22;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        #utility span {
+            cursor: pointer;
+            margin-left: 10px;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        #utility span:hover {
+            color: #E67E22;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="scr/logo.png" alt="Anime Shop" width="40" height="32">
+            <span>Anime Shop</span>
+        </div>
+        <nav>
+            <a href="#">Products</a>
+            <a href="#">About Us</a>
+            <div id="utility">
+                <span class="material-symbols-outlined">
+                    search
+                </span>
+                <span class="material-symbols-outlined">
+                    shopping_cart
+                </span>
+            </div>
+        </nav>
+    </header>
+    <section class="hero">
+        <h1>Hunter x Hunter products!!!</h1>
+        
+    </section>
+    <div class="container">
+        <div class="filters">
+            <div class="filter-btn"><i class="fas fa-filter"></i> Filter</div>
+            <div class="sort-dropdown"><i class="fas fa-sort"></i> Sort by</div>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://m.media-amazon.com/images/I/51ppBOol+eL.jpg" alt="Product 1">
+                <h3>hunter x hunter necklace</h3>
+                <p class="price">$19.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://m.media-amazon.com/images/I/51yPFSM11+L._AC_UF894,1000_QL80_.jpg" alt="Product 2">
+                <h3>Hunter x Hunter Hoodie</h3>
+                <p class="price">$24.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.redd.it/se6m3l70hk691.jpg" alt="Product 3">
+                <h3>hunter x hunter figure</h3>
+                <p class="price">$14.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://www.gkfigure.com/cdn/shop/products/2_7b98ff4f-ce16-49bd-a39e-d301325f5c73.jpg?v=1639792525&width=533" alt="Product 4">
+                <h3>Nitero Figures</h3>
+                <p class="price">$29.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://cdn.media.amplience.net/s/hottopic/15563563_hi?$productMainDesktop$&fmt=auto" alt="Product 5">
+                <h3>hunter x hunter sweater</h3>
+                <p class="price">$34.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.pinimg.com/originals/90/b1/61/90b16101f658aa591ce30d098f60fade.jpg" alt="Product 6">
+                <h3>HxH shoes </h3>
+                <p class="price">$39.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.ebayimg.com/images/g/yPMAAOSwZq9fxHsR/s-l1600.jpg" alt="Product 7">
+                <h3>Hunter x Hunter Manga collection</h3>
+                <p class="price">$44.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://i5.walmartimages.com/seo/Hunter-X-Hunter-Tonal-Color-Anime-Characters-Mens-and-Womens-Short-Sleeve-T-Shirt-Black-S-XXL_5e3c1f06-07eb-4125-8d26-64714866449f.1988d28ce65f3949bf0ccba795fa2a43.jpeg" alt="Product 8">
+                <h3>HxH T-Shirt</h3>
+                <p class="price">$49.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-oGsv1wkkm5eYBxpVdMx3Gmz4zY_a2YLTTA&s" alt="Product 9">
+                <h3>Hunter short</h3>
+                <p class="price">$54.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.goodsmile.info/cgm/images/product/20190802/8650/62638/large/6d4b843961fcb28293b0c88b78418548.jpg" alt="Product 10">
+                <h3>GonDroid</h3>
+                <p class="price">$59.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://animeape.com/wp-content/uploads/2021/10/Power-Duo-Gon-Killua-Hunter-X-Hunter_AOP-Hoodie-3D-FRONT_Mockup.jpg" alt="Product 11">
+                <h3>hunter hoodie</h3>
+                <p class="price">$64.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.etsystatic.com/36345590/r/il/7a21d1/4487837531/il_fullxfull.4487837531_gjsf.jpg" alt="Product 12">
+                <h3>Hunter x Hunter accessories</h3>
+                <p class="price">$69.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Anime Shop. All rights reserved.</p>
+        <p>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </p>
+    </footer>
+</body>
+
+</html>

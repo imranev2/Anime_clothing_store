@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/ninja-naruto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: white;
+            width: 93.5%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s, padding 0.3s;
+        }
+
+        header.scrolled {
+            background: #f9f9f9;
+            padding: 10px 50px;
+        }
+
+
+        nav > #logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    grid-gap: 8px;
+    line-height: 100%;
+}
+
+nav > #logo > span {
+    font-size: 32px;
+}
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #E67E22;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 100px;
+            padding: 100px 20px 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .filters .filter-btn,
+        .filters .sort-dropdown {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .filters .filter-btn:hover,
+        .filters .sort-dropdown:hover {
+            background: #f0f0f0;
+            transform: translateY(-3px);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-card h3 {
+            font-size: 1.2em;
+            margin: 15px 0;
+            padding: 0 10px;
+        }
+
+        .product-card p {
+            font-size: 1em;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .price {
+            color: #E67E22;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .rating {
+            margin: 10px 0;
+        }
+
+        .rating span {
+            font-size: 1.2em;
+            color: #FFD700;
+        }
+
+        .rating .half {
+            position: relative;
+        }
+
+        .rating .half::before {
+            content: '\2605';
+            position: absolute;
+            left: 0;
+            width: 50%;
+            overflow: hidden;
+            color: #FFD700;
+        }
+
+        .hero {
+            background:linear-gradient(to bottom right, #fa9d33, #ffdfae21); 
+            color: #fff;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Ninja Naruto', sans-serif;
+            font-size: 3em;
+            margin: 0;
+            color: #FF4500;
+        }
+
+        .hero img {
+            max-width: 500px;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #E67E22;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        #utility span {
+            cursor: pointer;
+            margin-left: 10px;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        #utility span:hover {
+            color: #E67E22;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="scr/logo.png" alt="Anime Shop" width="40" height="32">
+            <span>Anime Shop</span>
+        </div>
+        <nav>
+            <a href="#">Products</a>
+            <a href="#">About Us</a>
+            <div id="utility">
+                <span class="material-symbols-outlined">
+                    search
+                </span>
+                <span class="material-symbols-outlined">
+                    shopping_cart
+                </span>
+            </div>
+        </nav>
+    </header>
+    <section class="hero">
+        <h1>Naruto products!!!</h1>
+    </section>
+    <div class="container">
+        <div class="filters">
+            <div class="filter-btn"><i class="fas fa-filter"></i> Filter</div>
+            <div class="sort-dropdown"><i class="fas fa-sort"></i> Sort by</div>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMolYUh234Ti_gEQpV5hvIu3tg0Vpu4-Y18w&s" alt="Product 1">
+                <h3>Nendoroid Naruto</h3>
+                <p class="price">$19.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://m.media-amazon.com/images/I/61bkldwzN4L.jpg" alt="Product 2">
+                <h3>Naruto Headband</h3>
+                <p class="price">$24.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://ae01.alicdn.com/kf/Hc3b408ac9560416c8184b04eb449c4c9q/Deli-Pens-Set-Cute-Naruto-Bullet-Pens-for-School-Supplies-Japanese-Stationery-Kids-Gift-Kawaii-Anime.jpg" alt="Product 3">
+                <h3>naruto pen</h3>
+                <p class="price">$14.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://img.joomcdn.net/54142ed5704adc7b561f05a5c7553b74d3f6acad_original.jpeg" alt="Product 4">
+                <h3>Naruto Cosplay</h3>
+                <p class="price">$29.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://www.webstoresa.co.za/wp-content/uploads/2021/02/Hoodies-Cosplay-Flame-BACK.png" alt="Product 5">
+                <h3>Naruto hoodie</h3>
+                <p class="price">$34.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://ae03.alicdn.com/kf/S77aed642168345b0936f2f591ff885b2l.jpg_640x640q90.jpg" alt="Product 6">
+                <h3>Naruto Shorts </h3>
+                <p class="price">$39.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.pinimg.com/originals/da/19/31/da1931650815b2a67c03740df9f2930a.jpg" alt="Product 7">
+                <h3>Naruto Sueter</h3>
+                <p class="price">$44.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://m.media-amazon.com/images/I/A13usaonutL._CLa%7C2140%2C2000%7C81-RmRT4k3L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_UY1000_.png" alt="Product 8">
+                <h3>Naruto T-Shirt</h3>
+                <p class="price">$49.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dzdgpwtox/image/upload/w_900,c_scale/l_final_designs:seller_design_233647:f_20210618151939.png,w_360,h_400,c_fit,x_0,y_-40/sweatshirts/black_f.jpg" alt="Product 9">
+                <h3>Naruto Merch</h3>
+                <p class="price">$54.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://m.media-amazon.com/images/I/71Q1yXhpr2L._AC_UF1000,1000_QL80_.jpg" alt="Product 10">
+                <h3>Naruto Coloring Book</h3>
+                <p class="price">$59.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.ebayimg.com/images/g/kiMAAOSwTh5kRk8C/s-l1200.webp" alt="Product 11">
+                <h3>minato figure</h3>
+                <p class="price">$64.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://i5.walmartimages.com/asr/9b3a74ca-f85d-4cc6-9c69-68e60768abe3.b98030ad1ab5db5a3dbdefc0a7a67315.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" alt="Product 12">
+                <h3>naruto figure</h3>
+                <p class="price">$69.99</p>
+                <div class="rating">
+                    <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Anime Shop. All rights reserved.</p>
+        <p>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </p>
+    </footer>
+</body>
+
+</html>
